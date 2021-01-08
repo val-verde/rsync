@@ -213,7 +213,7 @@ if test x"$enable_simd" != x"no"; then
     # For x86-64 SIMD, g++ >=5 or clang++ >=7 is required
     if test x"$build_cpu" = x"x86_64"; then
 	AC_LANG(C++)
-	AC_RUN_IFELSE([AC_LANG_PROGRAM([[#include <stdio.h>
+	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <stdio.h>
 #include <immintrin.h>
 __attribute__ ((target("default"))) int test_ssse3(int x) { return x; }
 __attribute__ ((target("default"))) int test_sse2(int x) { return x; }
@@ -305,7 +305,7 @@ AC_SUBST(ASM)
 # arrgh. libc in some old debian version screwed up the largefile
 # stuff, getting byte range locking wrong
 AC_CACHE_CHECK([for broken largefile support],rsync_cv_HAVE_BROKEN_LARGEFILE,[
-AC_RUN_IFELSE([AC_LANG_SOURCE([[
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #define _FILE_OFFSET_BITS 64
 #include <stdio.h>
 #include <fcntl.h>
@@ -602,7 +602,7 @@ if test x"$no_lib" != x; then
 fi
 
 AC_CACHE_CHECK([if makedev takes 3 args],rsync_cv_MAKEDEV_TAKES_3_ARGS,[
-AC_RUN_IFELSE([AC_LANG_SOURCE([[
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #include <sys/types.h>
 #ifdef MAJOR_IN_MKDEV
 #include <sys/mkdev.h>
@@ -951,7 +951,7 @@ if test x"$enable_iconv" != x"no"; then
 fi
 
 AC_CACHE_CHECK([whether chown() modifies symlinks],rsync_cv_chown_modifies_symlink,[
-  AC_RUN_IFELSE([AC_LANG_SOURCE([[
+  AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #if HAVE_UNISTD_H
 # include <unistd.h>
 #endif
@@ -969,7 +969,7 @@ if test $rsync_cv_chown_modifies_symlink = yes; then
 fi
 
 AC_CACHE_CHECK([whether link() can hard-link symlinks],rsync_cv_can_hardlink_symlink,[
-  AC_RUN_IFELSE([AC_LANG_SOURCE([[
+  AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #ifdef HAVE_FCNTL_H
 # include <fcntl.h>
 #elif defined HAVE_SYS_FCNTL_H
@@ -997,7 +997,7 @@ if test $rsync_cv_can_hardlink_symlink = yes; then
 fi
 
 AC_CACHE_CHECK([whether link() can hard-link special files],rsync_cv_can_hardlink_special,[
-  AC_RUN_IFELSE([AC_LANG_SOURCE([[
+  AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #if HAVE_UNISTD_H
 # include <unistd.h>
 #endif
@@ -1019,7 +1019,7 @@ if test $rsync_cv_can_hardlink_special = yes; then
 fi
 
 AC_CACHE_CHECK([for working socketpair],rsync_cv_HAVE_SOCKETPAIR,[
-AC_RUN_IFELSE([AC_LANG_SOURCE([[
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #include <sys/types.h>
 #include <sys/socket.h>
 
@@ -1088,7 +1088,7 @@ if test x"$rsync_cv_SIGNED_CHAR_OK" = x"yes"; then
 fi
 
 AC_CACHE_CHECK([for broken readdir],rsync_cv_HAVE_BROKEN_READDIR,[
-AC_RUN_IFELSE([AC_LANG_SOURCE([[#include <sys/types.h>
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([[#include <sys/types.h>
 #include <dirent.h>
 int main(void) { struct dirent *di; DIR *d = opendir("."); di = readdir(d);
 if (di && di->d_name[-2] == '.' && di->d_name[-1] == 0 &&
@@ -1112,7 +1112,7 @@ if test x"$rsync_cv_HAVE_GETTIMEOFDAY_TZ" != x"no"; then
 fi
 
 AC_CACHE_CHECK([for C99 vsnprintf],rsync_cv_HAVE_C99_VSNPRINTF,[
-AC_RUN_IFELSE([AC_LANG_SOURCE([[
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #include <sys/types.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -1138,7 +1138,7 @@ fi
 
 
 AC_CACHE_CHECK([for secure mkstemp],rsync_cv_HAVE_SECURE_MKSTEMP,[
-AC_RUN_IFELSE([AC_LANG_SOURCE([[#include <stdlib.h>
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([[#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -1168,7 +1168,7 @@ fi
 
 
 AC_CACHE_CHECK([if mknod creates FIFOs],rsync_cv_MKNOD_CREATES_FIFOS,[
-AC_RUN_IFELSE([AC_LANG_SOURCE([[
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #include <stdio.h>
 #include <sys/stat.h>
 #include <errno.h>
@@ -1184,7 +1184,7 @@ if test x"$rsync_cv_MKNOD_CREATES_FIFOS" = x"yes"; then
 fi
 
 AC_CACHE_CHECK([if mknod creates sockets],rsync_cv_MKNOD_CREATES_SOCKETS,[
-AC_RUN_IFELSE([AC_LANG_SOURCE([[
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #include <stdio.h>
 #include <sys/stat.h>
 #include <errno.h>
