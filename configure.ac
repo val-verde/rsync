@@ -211,7 +211,7 @@ CXXFLAGS=`echo "$CXXFLAGS" | sed 's/-g //'`
 
 if test x"$enable_simd" != x"no"; then
     # For x86-64 SIMD, g++ >=5 or clang++ >=7 is required
-    if test x"$build_cpu" = x"x86_64"; then
+    if test x"$host_cpu" = x"x86_64"; then
 	AC_LANG(C++)
 	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <stdio.h>
 #include <immintrin.h>
